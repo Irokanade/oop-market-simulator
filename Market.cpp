@@ -2,8 +2,6 @@
 
 #include "Market.h"
 
-using namespace std;
-
 void Market::addAsset(Asset* asset) {
     cout << "Added asset: " << asset->getSymbol() << endl;
     marketAssets.push_back(asset);
@@ -14,7 +12,7 @@ void Market::addUser(User* user) {
     marketUsers.push_back(user);
 }
 
-Asset* Market::findAsset(const string& symbol) {
+Asset* Market::findAsset(std::string_view symbol) {
     for (auto* asset : marketAssets) {
         if (asset->getSymbol() == symbol)
             return asset;
@@ -23,7 +21,7 @@ Asset* Market::findAsset(const string& symbol) {
     return nullptr;
 }
 
-User* Market::findUser(const string& name) {
+User* Market::findUser(std::string_view name) {
     for (auto* user : marketUsers) {
         if (user->getName() == name)
             return user;
