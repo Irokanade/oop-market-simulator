@@ -1,13 +1,24 @@
+#include <cassert>
 #include <ctime>
 #include <iostream>
 
 #include "Transaction.h"
 
+std::string transactionTypeToString(TransactionType type) {
+    switch (type) {
+        case TransactionType::BUY: return "BUY";
+        case TransactionType::SELL: return "SELL";
+    }
+
+    assert(false && "invalid TransactionType");
+    return "";
+}
+
 // constructor
-Transaction::Transaction(std::string user, std::string symbol, std::string type, double price, int qty)
+Transaction::Transaction(std::string user, std::string symbol, TransactionType type, double price, int qty)
     : userName(std::move(user)),
       stockSymbol(std::move(symbol)),
-      transactionType(std::move(type)),
+      transactionType(type),
       transactionPrice(price),
       quantity(qty),
       timestamp(time(nullptr)) {}
@@ -15,7 +26,7 @@ Transaction::Transaction(std::string user, std::string symbol, std::string type,
 // implement
 void Transaction::printTransaction() const {
     std::cout << "User: " << userName
-         << ", Action: " << transactionType
+         << ", Action: " << transactionTypeToString(transactionType)
          << ", Asset: " << stockSymbol
          << ", Price: " << transactionPrice
          << ", Quantity: " << quantity
