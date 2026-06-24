@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 #include "Asset.h"
 #include "Market.h"
@@ -10,17 +11,17 @@ int main() {
     Market market;
 
     // Add assets using runtime polymorphism (inheritance + virtual functions)
-    market.addAsset(new Stock("AAPL", 150.0, "Technology"));
-    market.addAsset(new Stock("GOOG", 2800.0, "Technology"));
-    market.addAsset(new Future("TXO23000A6", 23000, "2026/01/21"));
+    market.addAsset(std::make_unique<Stock>("AAPL", 150.0,  "Technology"));
+    market.addAsset(std::make_unique<Stock>("GOOG", 2800.0, "Technology"));
+    market.addAsset(std::make_unique<Future>("TXO23000A6", 23000, "2026/01/21"));
 
     market.listAssets();
 
     std::cout << "--------------------" << '\n';
 
     // Add users with different fee models using runtime polymorphism
-    market.addUser(new VipUser("Alice", 10000.0));
-    market.addUser(new NormalUser("Bob", 5000.0));
+    market.addUser(std::make_unique<VipUser>("Alice", 10000.0));
+    market.addUser(std::make_unique<NormalUser>("Bob", 5000.0));
 
     std::cout << "--------------------" << '\n';
 
