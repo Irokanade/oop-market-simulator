@@ -37,7 +37,7 @@ bool User::buyAsset(Asset& asset, int quantity) {
     }
 
     userBalance -= total;
-    transactions.emplace_back(userName, asset.getSymbol(), TransactionType::BUY, price, quantity);
+    transactions.emplace_back(userName, asset.getSymbol(), "BUY", price, quantity);
     std::cout << userName << " (" << getUserType() << ") bought " << quantity << " of "
          << asset.getSymbol() << " at " << price << " (fee " << fee << ")" << '\n';
     onTrade(transactions.back());
@@ -56,7 +56,7 @@ bool User::sellAsset(Asset& asset, int quantity) {
     double net = revenue - fee;
 
     userBalance += net;
-    transactions.emplace_back(userName, asset.getSymbol(), TransactionType::SELL, price, quantity);
+    transactions.emplace_back(userName, asset.getSymbol(), "SELL", price, quantity);
     std::cout << userName << " (" << getUserType() << ") sold " << quantity << " of "
          << asset.getSymbol() << " at " << price << " (fee " << fee << ")" << '\n';
     onTrade(transactions.back());
