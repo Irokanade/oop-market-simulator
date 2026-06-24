@@ -2,13 +2,11 @@
 
 #include "Asset.h"
 #include "Market.h"
-#include "Transaction.h"
 #include "User.h"
 
-using namespace std;
 
 int main() {
-    cout << "=== OOP Market Simulator - Runtime Polymorphism ===" << endl;
+    std::cout << "=== OOP Market Simulator - Runtime Polymorphism ===" << '\n';
     Market market;
 
     // Add assets using runtime polymorphism (inheritance + virtual functions)
@@ -18,13 +16,13 @@ int main() {
 
     market.listAssets();
 
-    cout << "--------------------" << endl;
+    std::cout << "--------------------" << '\n';
 
     // Add users with different fee models using runtime polymorphism
     market.addUser(new VipUser("Alice", 10000.0));
     market.addUser(new NormalUser("Bob", 5000.0));
 
-    cout << "--------------------" << endl;
+    std::cout << "--------------------" << '\n';
 
     // Locate users and assets
     User* alice = market.findUser("Alice");
@@ -45,12 +43,12 @@ int main() {
     }
 
     if (alice) {
-        cout << "User Type: " << alice->getUserType() << endl;
+        std::cout << "User Type: " << alice->getUserType() << '\n';
         alice->printTransactions();
     }
 
     if (bob) {
-        cout << "User Type: " << bob->getUserType() << endl;
+        std::cout << "User Type: " << bob->getUserType() << '\n';
         bob->printTransactions();
     }
 

@@ -2,10 +2,9 @@
 
 #include "Asset.h"
 
-using namespace std;
 
 // ---------- Asset base class ----------
-const string& Asset::getSymbol() const {
+const std::string& Asset::getSymbol() const {
     return assetSymbol;
 }
 
@@ -19,12 +18,12 @@ void Asset::updatePrice(double newPrice) {
 
 // ---------- Stock ----------
 void Stock::printInfo() const {
-    cout << "Runtime Stock: " << assetSymbol << ", Industry: " << industry
-         << ", Current Price: " << assetPrice << endl;
+    std::cout << "Runtime Stock: " << assetSymbol << ", Industry: " << industry
+         << ", Current Price: " << assetPrice << '\n';
 }
 
 // ---------- Future ----------
 void Future::printInfo() const {
-    cout << "Runtime Future: " << assetSymbol << ", End Date: " << endDate
-         << ", Current Price: " << assetPrice << endl;
+    std::cout << "Runtime Future: " << assetSymbol << ", End Date: " << endDate
+         << ", Current Price: " << assetPrice << '\n';
 }

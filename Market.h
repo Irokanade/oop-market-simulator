@@ -10,8 +10,8 @@
 // Traditional Market class with runtime polymorphism
 class Market {
   private:
-    vector<Asset*> marketAssets;
-    vector<User*> marketUsers;
+    std::vector<Asset*> marketAssets;
+    std::vector<User*> marketUsers;
 
   public:
     void addAsset(Asset* asset);

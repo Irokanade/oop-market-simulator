@@ -3,12 +3,12 @@
 #include "Market.h"
 
 void Market::addAsset(Asset* asset) {
-    cout << "Added asset: " << asset->getSymbol() << endl;
+    std::cout << "Added asset: " << asset->getSymbol() << '\n';
     marketAssets.push_back(asset);
 }
 
 void Market::addUser(User* user) {
-    cout << "Added user: " << user->getName() << " (" << user->getUserType() << ")" << endl;
+    std::cout << "Added user: " << user->getName() << " (" << user->getUserType() << ")" << '\n';
     marketUsers.push_back(user);
 }
 
@@ -17,7 +17,7 @@ Asset* Market::findAsset(std::string_view symbol) {
         if (asset->getSymbol() == symbol)
             return asset;
     }
-    cout << "Asset " << symbol << " not found" << endl;
+    std::cout << "Asset " << symbol << " not found" << '\n';
     return nullptr;
 }
 
@@ -26,13 +26,13 @@ User* Market::findUser(std::string_view name) {
         if (user->getName() == name)
             return user;
     }
-    cout << "User " << name << " not found" << endl;
+    std::cout << "User " << name << " not found" << '\n';
     return nullptr;
 }
 
 // polymorphic
 void Market::listAssets() const {
-    cout << "Market assets:" << endl;
+    std::cout << "Market assets:" << '\n';
     for (const auto* asset : marketAssets) {
         asset->printInfo();
     }
