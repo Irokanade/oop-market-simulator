@@ -12,7 +12,7 @@ double Asset::getPrice() const {
     return assetPrice;
 }
 
-void Asset::updatePrice(double newPrice) {
+void Asset::updatePrice(const double newPrice) {
     assetPrice = newPrice;
 }
 

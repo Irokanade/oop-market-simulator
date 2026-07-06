@@ -28,8 +28,8 @@ int main() {
     // Locate users and assets
     User* alice = market.findUser("Alice");
     User* bob = market.findUser("Bob");
-    Asset* apple = market.findAsset("AAPL");
-    Asset* google = market.findAsset("GOOG");
+    const Asset* apple = market.findAsset("AAPL");
+    const Asset* google = market.findAsset("GOOG");
 
     if (alice && apple) {
         alice->buyAsset(*apple, 10);

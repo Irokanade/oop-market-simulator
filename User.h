@@ -16,24 +16,24 @@ class User {
     std::vector<Transaction> transactions;
 
   public:
-    User(std::string name, double balance)
+    User(std::string name, const double balance)
         : userName(std::move(name)), userBalance(balance) {}
 
-    const std::string& getName() const;
-    double getBalance() const;
+    [[nodiscard]] const std::string& getName() const;
+    [[nodiscard]] double getBalance() const;
 
     // pure virtual function
-    virtual double getFeeRate() const = 0;
+    [[nodiscard]] virtual double getFeeRate() const = 0;
 
     // virtual function
     virtual ~User() = default;
-    virtual std::string getUserType() const;
+    [[nodiscard]] virtual std::string getUserType() const;
     virtual std::string onTrade(const Transaction&) {
         return "Trading";
     }
 
-    bool buyAsset(Asset& asset, int quantity);
-    bool sellAsset(Asset& asset, int quantity);
+    bool buyAsset(const Asset& asset, int quantity);
+    bool sellAsset(const Asset& asset, int quantity);
 
     void printTransactions() const;
 };
@@ -41,11 +41,11 @@ class User {
 // Runtime polymorphism VipUser with lower fees
 class VipUser : public User {
   public:
-    VipUser(std::string name, double balance)
+    VipUser(std::string name, const double balance)
         : User(std::move(name), balance) {}
 
-    double getFeeRate() const override;
-    std::string getUserType() const override;
+    [[nodiscard]] double getFeeRate() const override;
+    [[nodiscard]] std::string getUserType() const override;
 
     std::string onTrade(const Transaction&) override;
 };
@@ -53,11 +53,11 @@ class VipUser : public User {
 // Runtime polymorphism NormalUser with higher fees
 class NormalUser : public User {
   public:
-    NormalUser(std::string name, double balance)
+    NormalUser(std::string name, const double balance)
         : User(std::move(name), balance) {}
 
-    double getFeeRate() const override;
-    std::string getUserType() const override;
+    [[nodiscard]] double getFeeRate() const override;
+    [[nodiscard]] std::string getUserType() const override;
 };
 
 #endif

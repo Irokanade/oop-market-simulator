@@ -12,7 +12,7 @@ void Market::addUser(std::unique_ptr<User> user) {
     marketUsers.push_back(std::move(user));
 }
 
-Asset* Market::findAsset(std::string_view symbol) {
+Asset* Market::findAsset(const std::string_view symbol) const {
     for (auto&& asset : marketAssets) {
         if (asset->getSymbol() == symbol)
             return asset.get();
@@ -21,7 +21,7 @@ Asset* Market::findAsset(std::string_view symbol) {
     return nullptr;
 }
 
-User* Market::findUser(std::string_view name) {
+User* Market::findUser(const std::string_view name) const {
     for (auto&& user : marketUsers) {
         if (user->getName() == name)
             return user.get();

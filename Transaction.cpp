@@ -1,10 +1,9 @@
-#include <ctime>
 #include <iostream>
 
 #include "Transaction.h"
 
 // constructor
-Transaction::Transaction(std::string user, std::string symbol, std::string type, double price, int qty)
+Transaction::Transaction(std::string user, std::string symbol, std::string type, const double price, const int qty)
     : userName(std::move(user)),
       stockSymbol(std::move(symbol)),
       transactionType(std::move(type)),

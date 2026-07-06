@@ -18,16 +18,16 @@ std::string User::getUserType() const {
     return "User";
 }
 
-bool User::buyAsset(Asset& asset, int quantity) {
+bool User::buyAsset(const Asset& asset, int quantity) {
     if (quantity <= 0) {
         std::cout << userName << ": invalid quantity." << '\n';
         return false;
     }
 
     double price = asset.getPrice();
-    double cost = price * quantity;
-    double fee = cost * getFeeRate();
-    double total = cost + fee;
+    const double cost = price * quantity;
+    const double fee = cost * getFeeRate();
+    const double total = cost + fee;
 
     if (userBalance < total) {
         std::cout << userName << " does not have enough balance to buy " << quantity
@@ -44,16 +44,16 @@ bool User::buyAsset(Asset& asset, int quantity) {
     return true;
 }
 
-bool User::sellAsset(Asset& asset, int quantity) {
+bool User::sellAsset(const Asset& asset, int quantity) {
     if (quantity <= 0) {
         std::cout << userName << ": invalid quantity." << '\n';
         return false;
     }
 
     double price = asset.getPrice();
-    double revenue = price * quantity;
-    double fee = revenue * getFeeRate();
-    double net = revenue - fee;
+    const double revenue = price * quantity;
+    const double fee = revenue * getFeeRate();
+    const double net = revenue - fee;
 
     userBalance += net;
     transactions.emplace_back(userName, asset.getSymbol(), "SELL", price, quantity);
